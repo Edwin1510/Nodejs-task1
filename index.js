@@ -9,14 +9,16 @@ const server = http.createServer((req, res) => {
   const folder = "edwin";
 const currentDate = new Date();
 const year = currentDate.getFullYear();
-const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Adding leading zero if needed
-const day = String(currentDate.getDate()).padStart(2, '0'); // Adding leading zero if needed
-const hours = String(currentDate.getHours()).padStart(2, '0'); // Adding leading zero if needed
-const minutes = String(currentDate.getMinutes()).padStart(2, '0'); // Adding leading zero if needed
-const seconds = String(currentDate.getSeconds()).padStart(2, '0'); // Adding leading zero if needed
+const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+const day = String(currentDate.getDate()).padStart(2, '0'); 
+const hours = String(currentDate.getHours()).padStart(2, '0'); 
+const minutes = String(currentDate.getMinutes()).padStart(2, '0'); 
+const seconds = String(currentDate.getSeconds()).padStart(2, '0'); 
 const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   try {
     fs.appendFileSync(`./${folder}/${fileName}`, `Current Date and Time: ${formattedDateTime}`);
+    const files = fs.readdirSync("./edwin");
+  console.log(files);
     res.statusCode = 200;
     res.setHeader("Content-Type", "text/html");
     res.end(`<html>
